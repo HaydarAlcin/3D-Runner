@@ -11,10 +11,13 @@ public class PlayerController : MonoBehaviour
 
     public float limitX;
 
-
+    public Animator PlayerAnim;
+    public GameObject Player;
     private void Start()
     {
         firstSpeed = runningSpeed;
+
+        PlayerAnim = GetComponent<Animator>();
     }
 
     private void Update()
@@ -53,11 +56,16 @@ public class PlayerController : MonoBehaviour
             runningSpeed += 2.5f;
             Invoke("NormalSpeed",2f);
         }
+
+        else if (other.CompareTag("Finish"))
+        {
+            runningSpeed = 0f;
+        }
     }
 
     public void NormalSpeed()
     {
         gameObject.transform.GetChild(1).gameObject.SetActive(false);
-        runningSpeed = firstSpeed;
+        runningSpeed -= 2.5f;
     }
 }

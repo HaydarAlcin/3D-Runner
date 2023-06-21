@@ -30,7 +30,7 @@ public class Opponent : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Obstacle"))
         {
-            transform.position = StartPosition.position;
+            transform.position = new Vector3(transform.position.x, transform.position.y, StartPosition.position.z);
         }
     }
 
@@ -47,6 +47,6 @@ public class Opponent : MonoBehaviour
     public void NormalSpeed()
     {
         gameObject.transform.GetChild(1).gameObject.SetActive(false);
-        OpponentAgent.speed = firstSpeed;
+        OpponentAgent.speed -= 2.5f;
     }
 }

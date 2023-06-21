@@ -18,6 +18,8 @@ public class CheckCollisions : MonoBehaviour
             //Destroy(other.gameObject);
             other.transform.parent.gameObject.SetActive(false);
         }
+
+        
     }
 
     private void OnCollisionEnter(Collision collision)
