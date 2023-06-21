@@ -4,28 +4,30 @@ using UnityEngine;
 
 public class ObstacleRotation : MonoBehaviour
 {
-    public float rotateSpeed;
+    public float obstacleSpeed;
+    
+    private float randomOffset;
+    public float strength = 2.5f;
+
+
+    private void Start()
+    {
+        randomOffset = Random.Range(-strength, strength);
+    }
+
 
     private void Update()
     {
-        if (this.gameObject.CompareTag("Obstacle"))
-        {
-            ObstacleRotate();
-        }
+        Move();
+        
     }
 
-    private void OnCollisionEnter(Collision collision)
+
+    public void Move()
     {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            Debug.Log("Çarptý");
-        }
+        Vector3 pos = transform.position;
+
+        pos.x = Mathf.Sin(Time.time * obstacleSpeed * randomOffset) * strength;
+        transform.position = pos;
     }
-
-
-    public void ObstacleRotate()
-    {
-        transform.Rotate(new Vector3(0, rotateSpeed*Time.deltaTime, 0));
-    }
-
 }

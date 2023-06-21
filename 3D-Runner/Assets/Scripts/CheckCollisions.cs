@@ -7,6 +7,7 @@ public class CheckCollisions : MonoBehaviour
 {
     public int score;
     public TextMeshProUGUI CoinText;
+    public Transform StartPosition;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -23,7 +24,7 @@ public class CheckCollisions : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Obstacle"))
         {
-            Debug.Log("Deðdi");
+            transform.position = StartPosition.position;
         }
     }
     public void AddCoin()

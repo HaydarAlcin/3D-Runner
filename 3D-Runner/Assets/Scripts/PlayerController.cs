@@ -4,10 +4,18 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public float firstSpeed;
+
     public float runningSpeed;
     public float xSpeed;
 
     public float limitX;
+
+
+    private void Start()
+    {
+        firstSpeed = runningSpeed;
+    }
 
     private void Update()
     {
@@ -35,5 +43,21 @@ public class PlayerController : MonoBehaviour
 
         Vector3 newPosition = new Vector3(newX, transform.position.y, transform.position.z + runningSpeed * Time.deltaTime);
         transform.position = newPosition;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Booster"))
+        {
+            gameObject.transform.GetChild(1).gameObject.SetActive(true);
+            runningSpeed += 2.5f;
+            Invoke("NormalSpeed",2f);
+        }
+    }
+
+    public void NormalSpeed()
+    {
+        gameObject.transform.GetChild(1).gameObject.SetActive(false);
+        runningSpeed = firstSpeed;
     }
 }
