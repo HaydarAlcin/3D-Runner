@@ -567,7 +567,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3c9bbf45d86f3345ae9342f5092c716, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ig: {fileID: 0}
+  characterPositions: []
+  Runners:
+  - {fileID: 1710227721}
+  - {fileID: 172663521}
+  - {fileID: 439659337}
+  - {fileID: 1488344758}
+  - {fileID: 725524555}
+  ScoreBoard:
+  - {fileID: 254399720}
+  - {fileID: 2009553686}
+  - {fileID: 1699210716}
+  - {fileID: 583519882}
+  - {fileID: 1459224679}
+  target: {fileID: 349322627}
   inputPlayerName: {fileID: 329610466}
   Player: {fileID: 1710227727}
 --- !u!4 &206874460
@@ -651,7 +664,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &248140973
 PrefabInstance:
@@ -8535,7 +8548,7 @@ RectTransform:
   - {fileID: 1897502014}
   - {fileID: 92033178}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
