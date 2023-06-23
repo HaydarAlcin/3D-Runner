@@ -20,10 +20,5 @@ public class CamFollowPlayer : MonoBehaviour
         transform.LookAt(lookTarget.position);
     }
 
-    private void Update()
-    {
-        
-    }
-
 
 }
