@@ -1,30 +1,43 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.AI;
 public class Opponent : MonoBehaviour
 {
     public NavMeshAgent OpponentAgent;
     public GameObject TargetObject;
+    public GameManager gm;
 
     public Transform StartPosition;
 
     public Animator anim;
 
     public float firstSpeed;
+    bool finish;
 
+    private Vector3 firstPos;
+    
     void Start()
     {
         OpponentAgent = GetComponent<NavMeshAgent>();
-
-        
+        finish = false;
+        firstPos = transform.position;
         firstSpeed = OpponentAgent.speed;
     }
 
     
     void Update()
     {
-        OpponentAgent.SetDestination(TargetObject.transform.position);
+        if (OpponentAgent.enabled!= false)
+        {
+            OpponentAgent.SetDestination(TargetObject.transform.position);
+        }
+
+        if (finish==true)
+        {
+            transform.position = Vector3.Slerp(transform.position, new Vector3(firstPos.x, transform.position.y, 188f), 0.02f);
+        }
     }
 
 
@@ -47,8 +60,19 @@ public class Opponent : MonoBehaviour
 
         if (other.CompareTag("Finish"))
         {
-            OpponentAgent.speed = 0f;
-            anim.SetTrigger("lose");
+            gm.RaceOver();
+            finish = true;
+            OpponentAgent.enabled = false;
+            //new Vector3(firstPos.x, transform.position.y, 188f);
+            if (gm.ScoreBoard[0].GetComponent<TextMeshProUGUI>().text == gameObject.name)
+            {
+                anim.SetTrigger("win");
+            }
+
+            else
+            {
+                anim.SetTrigger("lose");
+            }
         }
     }
 

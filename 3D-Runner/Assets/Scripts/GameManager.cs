@@ -21,6 +21,12 @@ public class GameManager : MonoBehaviour
     public TMP_Text Player;
     public Button StartBtn;
 
+    public List<GameObject> sortedCharacters = new List<GameObject>();
+
+    public PlayerController pc;
+
+    public bool raceOver;
+
     private void Awake()
     {
 
@@ -50,16 +56,25 @@ public class GameManager : MonoBehaviour
     }
 
 
-    void CalculateRanking()
+    public void CalculateRanking()
     {
-        
 
-        var sortedCharacters = Runners.OrderBy(character => Vector3.Distance(character.transform.position, target.position)).ToList();
+        if (raceOver==false)
+        {
+            sortedCharacters = Runners.OrderBy(character => Vector3.Distance(character.transform.position, target.position)).ToList();
 
-        // Sýralama sonuçlarýný text nesnelerine yazdýr
-        for (int i = 0; i < sortedCharacters.Count; i++)
-        {    
-            ScoreBoard[i].GetComponent<TextMeshProUGUI>().text = $"{i + 1}. {sortedCharacters[i].name}";
+            // Sýralama sonuçlarýný text nesnelerine yazdýr
+            for (int i = 0; i < sortedCharacters.Count; i++)
+            {
+                ScoreBoard[i].GetComponent<TextMeshProUGUI>().text = sortedCharacters[i].name;
+            }
+
+            
         }
+    }
+
+    public void RaceOver()
+    {
+        raceOver = true;
     }
 }

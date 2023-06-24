@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -8,21 +9,28 @@ public class PlayerController : MonoBehaviour
 
     public float runningSpeed;
     public float xSpeed;
+    public bool finish;
 
     public float limitX;
+    private Vector3 firstPos;
 
     public Animator PlayerAnim;
-    public GameObject Player;
+    public GameManager gm;
     private void Start()
     {
         firstSpeed = runningSpeed;
-
-        
+        finish = false;
+        firstPos = transform.position;
     }
 
     private void Update()
     {
         SwipeCheck();
+
+        if (finish == true)
+        {
+            transform.position = Vector3.Slerp(transform.position, new Vector3(firstPos.x, transform.position.y, 188f), 0.02f);
+        }
     }
 
 
@@ -59,8 +67,18 @@ public class PlayerController : MonoBehaviour
 
         else if (other.CompareTag("Finish"))
         {
+            gm.RaceOver();
+            finish = true;
             runningSpeed = 0f;
-            PlayerAnim.SetTrigger("win");
+            if (gm.ScoreBoard[0].GetComponent<TextMeshProUGUI>().text == gameObject.name)
+            {
+                PlayerAnim.SetTrigger("win");
+            }
+
+            else
+            {
+                PlayerAnim.SetTrigger("lose");
+            }
         }
     }
 
