@@ -9,6 +9,7 @@ public class Opponent : MonoBehaviour
 
     public Transform StartPosition;
 
+    public Animator anim;
 
     public float firstSpeed;
 
@@ -16,6 +17,7 @@ public class Opponent : MonoBehaviour
     {
         OpponentAgent = GetComponent<NavMeshAgent>();
 
+        
         firstSpeed = OpponentAgent.speed;
     }
 
@@ -41,6 +43,12 @@ public class Opponent : MonoBehaviour
             gameObject.transform.GetChild(1).gameObject.SetActive(true);
             OpponentAgent.speed += 2.5f;
             Invoke("NormalSpeed", 2f);
+        }
+
+        if (other.CompareTag("Finish"))
+        {
+            OpponentAgent.speed = 0f;
+            anim.SetTrigger("lose");
         }
     }
 

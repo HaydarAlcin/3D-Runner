@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour
     {
         firstSpeed = runningSpeed;
 
-        PlayerAnim = GetComponent<Animator>();
+        
     }
 
     private void Update()
@@ -60,6 +60,7 @@ public class PlayerController : MonoBehaviour
         else if (other.CompareTag("Finish"))
         {
             runningSpeed = 0f;
+            PlayerAnim.SetTrigger("win");
         }
     }
 
