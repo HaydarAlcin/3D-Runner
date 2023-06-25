@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -14,8 +15,11 @@ public class GameManager : MonoBehaviour
     //List<RankingSystem> sortArray = new List<RankingSystem>();
 
     public List<Vector3> characterPositions = new List<Vector3>();
-    public GameObject[] Runners,ScoreBoard;
+    public GameObject[] Runners, ScoreBoard;
     public Transform target;
+
+    public GameObject WinLosePanel;
+    public Sprite win, lose;
 
     public TMP_InputField inputPlayerName;
     public TMP_Text Player;
@@ -76,5 +80,33 @@ public class GameManager : MonoBehaviour
     public void RaceOver()
     {
         raceOver = true;
+        
+    }
+
+
+    public void GameOver()
+    {
+        WinLosePanel.SetActive(true);
+        
+        if (ScoreBoard[0].GetComponent<TextMeshProUGUI>().text == pc.gameObject.name)
+        {
+
+            WinLosePanel.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "You Won!!";
+            WinLosePanel.transform.GetChild(0).GetComponent<Image>().sprite = win;
+
+        }
+
+        else
+        {
+            WinLosePanel.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "You Lost :(";
+            WinLosePanel.transform.GetChild(0).GetComponent<Image>().sprite = lose;
+        }
+    }
+
+
+
+    public void RestartButton()
+    {
+        SceneManager.LoadScene(0);
     }
 }

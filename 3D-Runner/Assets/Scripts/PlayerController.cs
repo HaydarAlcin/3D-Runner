@@ -79,6 +79,8 @@ public class PlayerController : MonoBehaviour
             {
                 PlayerAnim.SetTrigger("lose");
             }
+
+            Invoke("GameOver", 2f);
         }
     }
 
@@ -86,5 +88,10 @@ public class PlayerController : MonoBehaviour
     {
         gameObject.transform.GetChild(1).gameObject.SetActive(false);
         runningSpeed -= 2.5f;
+    }
+
+    public void GameOver()
+    {
+        gm.GameOver();
     }
 }
