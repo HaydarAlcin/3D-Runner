@@ -53,6 +53,7 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1f;
         Player.GetComponent<TextMeshPro>().text = inputPlayerName.text;
 
+
         
         inputPlayerName.gameObject.SetActive(false);
         StartBtn.gameObject.SetActive(false);
@@ -70,7 +71,7 @@ public class GameManager : MonoBehaviour
             // Sýralama sonuçlarýný text nesnelerine yazdýr
             for (int i = 0; i < sortedCharacters.Count; i++)
             {
-                ScoreBoard[i].GetComponent<TextMeshProUGUI>().text = sortedCharacters[i].name;
+                ScoreBoard[i].GetComponent<TextMeshProUGUI>().text = sortedCharacters[i].GetComponent<TextMeshPro>().text;
             }
 
             
