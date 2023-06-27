@@ -70,7 +70,7 @@ public class PlayerController : MonoBehaviour
             gm.RaceOver();
             finish = true;
             runningSpeed = 0f;
-            if (gm.ScoreBoard[0].GetComponent<TextMeshProUGUI>().text == gameObject.name)
+            if (gm.ScoreBoard[0].GetComponent<TextMeshProUGUI>().text == gameObject.GetComponent<TextMeshPro>().text)
             {
                 PlayerAnim.SetTrigger("win");
             }

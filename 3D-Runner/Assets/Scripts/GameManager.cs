@@ -89,7 +89,7 @@ public class GameManager : MonoBehaviour
     {
         WinLosePanel.SetActive(true);
         
-        if (ScoreBoard[0].GetComponent<TextMeshProUGUI>().text == pc.gameObject.name)
+        if (ScoreBoard[0].GetComponent<TextMeshProUGUI>().text == pc.gameObject.GetComponent<TextMeshPro>().text)
         {
 
             WinLosePanel.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "You Won!!";
